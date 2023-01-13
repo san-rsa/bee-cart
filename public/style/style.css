@@ -1,0 +1,262 @@
+body {
+    background-color: rgba(117, 24, 24, 0.596);
+    margin: 0;
+    color: rgb(255, 255, 255);
+    padding: 0;
+}
+a:active {
+    color: aquamarine;
+}
+h1, h2, h3, h4 {
+    text-align: center;
+}
+
+.head img {
+    height: 50px;
+    width: 80px;
+    position: relative;
+    top: -10px;
+    left: -24px;
+
+}
+
+.main {
+    text-align: center;
+    margin: auto;
+}
+.head div {
+    display: inline;
+}
+
+.head .nav {
+    text-decoration: none;
+    float: right;
+    margin-left:5px;
+    padding: 1px ;
+    color: rgb(0, 0, 0);
+    /* position: absolute; */
+}
+.head a:hover {
+    color: azure;
+}
+
+.head a:active {
+    color: blueviolet;
+}
+.head {
+    background-color: brown;
+    margin: 0;
+    padding: 0;
+    height: 25px;
+
+}
+
+.heads {
+    background-color: aqua;
+    transition: 3s;
+    height: 25px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.topic, .main {
+    background: #2E3234;
+    margin: 0;
+}
+
+.topic * {
+    margin: 0;
+    padding: 5px;
+}
+
+.mainL {
+    background-color: dimgrey;
+}
+
+.mainL:hover {
+    background-color: whitesmoke;
+    color: white;
+}
+
+                                /* carousel */
+.car1 {
+    position: relative;
+    display: flex;
+    margin: 1px auto;
+    transition: 3s;
+    width: 100%;
+    max-height: 480px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.news {
+    display: flex;
+}
+
+
+.car1 p, .carousel-caption {
+    margin: auto 25%;
+    padding: 0;
+    width:auto;
+    text-align: center;
+    position: absolute;
+    bottom: 2px;
+    font-weight: normal;
+    color: white;
+    background: rgb(4 2 2 / 46%);
+    backdrop-filter: blur(50px);
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+}
+
+.topic {
+    text-align: center;
+}
+
+.logo {
+    border-radius: 50%;
+    background-color: beige;
+    height: 30px;
+    width: 45px;
+}
+
+
+/* foorm */
+
+.form *{
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    margin: 1% auto;
+    transition: 2s;
+    color: beige;
+}
+
+.form select {
+    background: black;
+}
+.form button, .btn {
+    display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+color: bisque;
+width: 200px;
+gap: 10px;
+text-align: center;
+margin: 20px auto;
+text-decoration: none;
+background: #2E3234;
+box-shadow: 4px 10px 4px rgba(0, 0, 0, 0.25), inset 5px -2px 4px rgba(0, 0, 0, 0.25), inset -11px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 17px;
+}
+
+.btn:active{
+    background-color: rgb(0, 255, 13);
+
+}
+.form button {
+    background-color: darkcyan;
+    transition: 2s;
+}
+
+.form button:active {
+    background-color: rgb(20, 194, 28);
+    transition: 0s;
+}
+
+
+.form {
+    text-align: center;
+    position: relative;
+    background-color: #2b402d;
+    margin: 1% auto;
+    padding: 40px;
+    margin: 5% 6%;
+    border: 1px;
+    box-shadow: 0px 5px 4px rgba(189, 34, 34, 0.25);
+    transition: 2s;
+}
+.form span {
+    display: inline;
+}
+.ori img {
+    height: 150px;
+    width: 220px;
+    text-align: left;
+
+}
+
+/* cat */
+
+.list * {
+    padding: 10px;
+    margin: 10px auto;
+    text-align: center;
+    width: 50%;
+}
+
+.list .img {
+    height: 400px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.img img {
+    /* height: fit-content; */
+    width: 100%;
+}
+.list {
+    display: flex;
+    text-align: center;
+    overflow: hidden;
+    /* height: 50%; */
+    background-color: #2E3234;
+
+}
+
+.menu a{
+    text-align: center;
+    text-decoration: none;
+    color: aqua;
+    display: block;
+}
+
+.menu a:active {
+    color: rgb(9, 255, 9);
+}
+.menu a:hover {
+    color: beige;
+}
+@media  (max-width: 500px ) {
+     .list{
+      display: block;
+    }
+
+    .menu {
+        background-color: #221c1c;
+    }
+  }
+/* con */
+.con {
+    background-color: brown;
+}
+
+.con p {
+    margin-bottom: 0;
+    padding-bottom: 10px;
+}
+.contact * {
+    color: aliceblue;
+    text-align: center;
+}
+
+/* menu */

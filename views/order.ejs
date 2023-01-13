@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/style.css">
+
+    <link rel="shortcut icon" href="../img/lg-prc/logoR.png" type="image/x-icon">
+    <title>Bee Snail</title>
+</head>
+
+    <header class="head" id="head">
+        <div class="logo"></div>
+        <a href="/"><img src="../img/lg-prc/logoR.png" alt="logo" /></a>
+            <a class="nav" href="/menu">Order</a>
+            <a class="nav" href="/contact">Contact</a>
+
+        </div>
+      </header>
+
+
+      <form class="form" action="" method="post">
+        <div>
+          <h1 id="hd1"> <%= title %> <span>snails</span></h1>
+          <div class="ori">
+            <img id="img" src="" alt="" >
+          </div>
+
+            <select name="snail" id="Lsnail" onchange="preview()">
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+                <option value="jumbo">Jumbo</option>
+            </select>
+
+             <p>price: </p>
+
+             <div class="input-container">
+                <label for="text">First name</label>
+                <input type="text" name="fname" id="fname" placeholder="Your first name">
+            </div>
+
+
+            <div class="input-container">
+                <label for="text">Last name</label>
+                <input type="text" name="lname" id="lname" placeholder="Your last name">
+            </div>
+
+            <div class="input-container">
+                <label for="text">Phone number</label>
+                <input type="number" name="pnum" id="pnum" placeholder="Your number">
+            </div>
+
+            <div class="input-container">
+                <label for="text">Quantity</label>
+                <input type="number" name="qty" id="qty" placeholder="Quantity">
+            </div>
+            <h3>Delivery fee: 1500</h3>
+
+            <h1 id="total">Total amount: <span id="total"></span> </h1>
+
+            <button type="submit">Order now</button>
+
+          </div>
+      </form>
+
+
+
+    <script src="../js/order.js"></script>
+    </body>
+    </html>
