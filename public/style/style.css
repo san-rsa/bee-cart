@@ -139,6 +139,10 @@ h1, h2, h3, h4 {
     color: beige;
 }
 
+.form input {
+    color: rgb(0, 0, 0);
+}
+
 .form select {
     background: black;
 }

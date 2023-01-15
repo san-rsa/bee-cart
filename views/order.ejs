@@ -22,7 +22,7 @@
 
       <form class="form" action="" method="post">
         <div>
-          <h1 id="hd1"> <%= title %> <span>snails</span></h1>
+          <h1 id="hd1"> <%= title        %> <span>snails</span></h1>
           <div class="ori">
             <img id="img" src="" alt="" >
           </div>
@@ -34,7 +34,7 @@
                 <option value="jumbo">Jumbo</option>
             </select>
 
-             <p>price: </p>
+             <p>price: ₦ <span id="price"></span></p>
 
              <div class="input-container">
                 <label for="text">First name</label>
@@ -56,9 +56,9 @@
                 <label for="text">Quantity</label>
                 <input type="number" name="qty" id="qty" placeholder="Quantity">
             </div>
-            <h3>Delivery fee: 1500</h3>
+            <h3>Delivery fee: ₦1500</h3>
 
-            <h1 id="total">Total amount: <span id="total"></span> </h1>
+            <h1 id="total">Total amount: ₦<span id="total"></span> </h1>
 
             <button type="submit">Order now</button>
 

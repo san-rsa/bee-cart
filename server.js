@@ -2,8 +2,7 @@ require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-// const lodash = require("lodash");
-// const { truncate } = require("lodash");
+const _ = require("lodash");
 const mongoose = require("mongoose")
 
 const app = express();
@@ -19,7 +18,9 @@ app.use(express.static("public"));
 // const orderSchema  = {
 //   "First name": String,
 //   "Second name": String,
-//   "Phone number": Number
+//   "Phone number": Number,
+//   "Quantity": Number,
+//   "Total amount": { Delivery: Number, order: Number, total: Number}
 // }
 
 // const Order = mongoose.model("order", orderSchema)
@@ -45,7 +46,7 @@ app.route("/menu/:order")
 .get((req, res ) => {
     let h1 = req.params.order;
 
-    let h1T = h1;
+    let h1T = _.capitalize(h1);
 
     res.render("order",  {
         title: h1T
