@@ -27,8 +27,6 @@ const items = {
 
 function preview() {
     let item = document.getElementById("price");
-    let total = document.getElementById("total");
-
     let option = document.getElementById("Lsnail").value;
     let hd1 = document.getElementById("hd1").childNodes[0].data.slice(1,-1);
 
@@ -87,8 +85,16 @@ function preview() {
 
 };
 
+function price() {
+    let delivery = Number(document.getElementById("delivery").innerHTML);
+    let item = Number(document.getElementById("price").innerHTML);
+    let total = document.getElementById("total");
+    let input = Number(document.getElementById("qty").value);
+ 
+    let items =  (item * input) + delivery;
+    total.innerHTML = items
+  
+}
+
 
 preview()
-
-console.log(hd1);
-

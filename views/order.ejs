@@ -22,7 +22,7 @@
 
       <form class="form" action="" method="post">
         <div>
-          <h1 id="hd1"> <%= title        %> <span>snails</span></h1>
+          <h1 id="hd1"> <%= title  %> <span>snails</span></h1>
           <div class="ori">
             <img id="img" src="" alt="" >
           </div>
@@ -34,13 +34,12 @@
                 <option value="jumbo">Jumbo</option>
             </select>
 
-             <p>price: ₦ <span id="price"></span></p>
+             <p>price: ₦ <span name="price" id="price"></span></p>
 
              <div class="input-container">
                 <label for="text">First name</label>
                 <input type="text" name="fname" id="fname" placeholder="Your first name">
             </div>
-
 
             <div class="input-container">
                 <label for="text">Last name</label>
@@ -49,16 +48,22 @@
 
             <div class="input-container">
                 <label for="text">Phone number</label>
-                <input type="number" name="pnum" id="pnum" placeholder="Your number">
+                <input type="number" name="phone" id="phone" placeholder="Your number">
             </div>
 
             <div class="input-container">
-                <label for="text">Quantity</label>
-                <input type="number" name="qty" id="qty" placeholder="Quantity">
-            </div>
-            <h3>Delivery fee: ₦1500</h3>
+              <label for="text">Email</label>
+              <input type="email" name="email" id="email" placeholder="Your email">
+          </div>
 
-            <h1 id="total">Total amount: ₦<span id="total"></span> </h1>
+            <div class="input-container">
+                <label for="text">Quantity</label>
+                <input type="number" name="qty" id="qty" placeholder="Quantity" onchange="price()">
+            </div>
+            <h3>Delivery fee: ₦<span name="delivery" id="delivery">1500</span></h3>
+            
+
+            <h1 id="">Total amount: ₦<span name="total" id="total"></span></h1>
 
             <button type="submit">Order now</button>
 
