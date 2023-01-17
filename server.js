@@ -7,7 +7,9 @@ const mongoose = require("mongoose")
 var document = require('html-element').document;
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-
+const nodemailer = require('nodemailer');
+const hbs = require('nodemailer-express-handlebars')
+const path = require('path')
 
 const app = express();
 
@@ -28,6 +30,9 @@ app.use(express.static("public"));
 // }
 
 // const Order = mongoose.model("order", orderSchema)
+// point to the template folder
+
+
 
 
 app.get("/", (req, res ) => {
@@ -88,43 +93,56 @@ const items = {
         const input = req.body.qty
         const delivery = 1500;
         let hd1 = _.capitalize(req.params.order);
+                
+        function err(error) {
+
+      if(input <= 0){
+            res.send(error)
+        }
+       } 
+       err();
+       
+        function prices() {
         
-        if (option == "small") {    
-         if (hd1 == "Fresh") {
-                item = items.Fresh.small;
-            } else if ( hd1 == "Dried") {
-                item =  items.dried.small;        
-        }   else if (hd1 == "Peppered") {
-                item =  items.peppered.small;
-        }
-     
-        } else if (option == "medium") {    
+            if (option == "small") {    
             if (hd1 == "Fresh") {
-                item =  items.Fresh.medium;
-            } else if ( hd1 == "Dried") {
-                item = items.dried.medium;        
-        }   else if (hd1 == "Peppered") {
-                item =  items.peppered.medium;
-        }        
-            
-        } else if (option == "large"){     
-            if (hd1 == "Fresh") {
-                item =  items.Fresh.large;
-            } else if ( hd1 == "Dried") {
-                item =  items.dried.large;        
-        }   else if (hd1 == "Peppered") {
-                item =  items.peppered.large;
-        }
-    
-        } else {    
-            if (hd1 == "Fresh") {
-                item =  items.Fresh.jumbo;
-            } else if ( hd1 == "Dried") {
-                item =  items.dried.jumbo;        
-        }   else if (hd1 == "Peppered") {
-                item =  items.peppered.jumbo;
-        }
-        }
+                    item = items.Fresh.small;
+                } else if ( hd1 == "Dried") {
+                    item =  items.dried.small;        
+            }   else if (hd1 == "Peppered") {
+                    item =  items.peppered.small;
+            }
+        
+            } else if (option == "medium") {    
+                if (hd1 == "Fresh") {
+                    item =  items.Fresh.medium;
+                } else if ( hd1 == "Dried") {
+                    item = items.dried.medium;        
+            }   else if (hd1 == "Peppered") {
+                    item =  items.peppered.medium;
+            }        
+                
+            } else if (option == "large"){     
+                if (hd1 == "Fresh") {
+                    item =  items.Fresh.large;
+                } else if ( hd1 == "Dried") {
+                    item =  items.dried.large;        
+            }   else if (hd1 == "Peppered") {
+                    item =  items.peppered.large;
+            }
+        
+            } else {    
+                if (hd1 == "Fresh") {
+                    item =  items.Fresh.jumbo;
+                } else if ( hd1 == "Dried") {
+                    item =  items.dried.jumbo;        
+            }   else if (hd1 == "Peppered") {
+                    item =  items.peppered.jumbo;
+            }
+            }
+        }; 
+
+    prices()
 
 
         const total = (item * input) + delivery;
@@ -145,14 +163,66 @@ const items = {
     }
 
     console.log(customer);
-    // console.log(dom);
 
-    // console.log(price);
+    
 
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    type: 'gmail',
+    user: 'rahmansanuth@gmail.com',
+    pass: 'odywdhvcxtgkyrjl'
+  }
+});
+
+const handlebarOptions = {
+    viewEngine: {
+        partialsDir: path.resolve('./views/'),
+        defaultLayout: false,
+    },
+    viewPath: path.resolve('./views/'),
+};
+
+// use a template file with nodemailer
+transporter.use('compile', hbs(handlebarOptions))
+
+
+var mailOptions = {
+  from: 'rahmansanuth@gmail.com',
+  to: customer.email,
+  subject: 'NEW ORDER AVAILABLE',
+  template: "email",
+  context: {
+    product: customer.product,
+    name: customer.fname + customer.lname,
+    phone: customer.phone,
+    email: customer.email,
+    variant: customer.variant,
+    delivery: customer.delivery,
+    item: customer.price,
+    qty: customer.quantity,
+    total: customer.total
+  },
+
+  attachments: [{ filename: "logoR.png", path: "./attachments/logoR.png" }],
+
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
 
     res.redirect("/menu/" + title);
 })
 
+app.get(("/ma"), function (req, res) {
+    res.sendFile( __dirname + "/mai.ejs")
+})
 
 
 
