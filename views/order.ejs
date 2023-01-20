@@ -38,27 +38,27 @@
 
              <div class="input-container">
                 <label for="text">First name</label>
-                <input type="text" name="fname" id="fname" placeholder="Your first name">
+                <input type="text" name="fname" id="fname" placeholder="Your first name" required>
             </div>
 
             <div class="input-container">
                 <label for="text">Last name</label>
-                <input type="text" name="lname" id="lname" placeholder="Your last name">
+                <input type="text" name="lname" id="lname" placeholder="Your last name" required>
             </div>
 
             <div class="input-container">
                 <label for="text">Phone number</label>
-                <input type="number" name="phone" id="phone" placeholder="Your number">
+                <input type="tel" name="phone" id="phone" placeholder="Your number" onchange="validNo()"  required >
             </div>
 
             <div class="input-container">
               <label for="text">Email</label>
-              <input type="email" name="email" id="email" placeholder="Your email">
+              <input type="email" name="email" id="email" placeholder="Your email" required>
           </div>
 
             <div class="input-container">
                 <label for="text">Quantity</label>
-                <input type="number" name="qty" id="qty" placeholder="Quantity" onchange="price()">
+                <input type="text" name="qty" id="qty" placeholder="Quantity" onchange="price(), validNo()" required>
             </div>
             <h3>Delivery fee: ₦<span name="delivery" id="delivery">1500</span></h3>
             
@@ -73,5 +73,6 @@
 
 
     <script src="../js/order.js"></script>
+    <script src="../js/valid.js"></script>
     </body>
     </html>

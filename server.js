@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
 const mongoose = require("mongoose")
-var document = require('html-element').document;
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const nodemailer = require('nodemailer');
@@ -19,19 +18,19 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-// mongoose.connect(process.env.DB, {useNewUrlparser: true});
+mongoose.connect(process.env.DB, {useNewUrlparser: true});
 
-// const orderSchema  = {
-//   "First name": String,
-//   "Second name": String,
-//   "Phone number": Number,
-//   "Quantity": Number,
-//   "Total amount": { Delivery: Number, order: Number, total: Number}
-// }
+const orderSchema  = {
+  "product": String,
+  "First name": String,
+  "Second name": String,
+  "Phone number": Number,
+  "size": String,
+  "Quantity": Number,
+  "Total amount": { Delivery: Number, order: Number, total: Number}
+}
 
-// const Order = mongoose.model("order", orderSchema)
-// point to the template folder
-
+const Order = mongoose.model("order", orderSchema)
 
 
 
@@ -161,19 +160,16 @@ const items = {
         quantity: add.qty,
         total: total
     }
-
-    console.log(customer);
-
-    
+  
 
 
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     type: 'gmail',
-    user: 'rahmansanuth@gmail.com',
-    pass: 'odywdhvcxtgkyrjl'
-  }
+    user: process.env.EMAIL,
+    pass: process.env.PASS_EMAIL
+ }
 });
 
 const handlebarOptions = {
@@ -186,11 +182,14 @@ const handlebarOptions = {
 
 // use a template file with nodemailer
 transporter.use('compile', hbs(handlebarOptions))
+let h1 = _.capitalize(title);
+
+let h1T = h1
 
 
 var mailOptions = {
-  from: 'rahmansanuth@gmail.com',
-  to: customer.email,
+  from: process.env.EMAIL,
+  to: process.env.EMAIL,
   subject: 'NEW ORDER AVAILABLE',
   template: "email",
   context: {
@@ -202,10 +201,12 @@ var mailOptions = {
     delivery: customer.delivery,
     item: customer.price,
     qty: customer.quantity,
-    total: customer.total
+    total: customer.total,
+    img: h1T,
   },
+  
 
-  attachments: [{ filename: "logoR.png", path: "./attachments/logoR.png" }],
+  attachments: [{ filename: "logoR", path: "./attachments/logoR.png"}, {filename: "size", path: "./attachments/" + h1T + "/" + customer.variant + ".jpg" }],
 
 };
 
@@ -217,13 +218,63 @@ transporter.sendMail(mailOptions, function(error, info){
   }
 });
 
-    res.redirect("/menu/" + title);
-})
 
-app.get(("/ma"), function (req, res) {
-    res.sendFile( __dirname + "/mai.ejs")
-})
+var usermailOptions = {
+    from: process.env.EMAIL,
+    to: customer.email,
+    subject: 'YOUR ORDER HAS BEEN RECEIVED',
+    template: "email",
+    context: {
+      product: customer.product,
+      name: customer.fname + customer.lname,
+      phone: customer.phone,
+      email: customer.email,
+      variant: customer.variant,
+      delivery: customer.delivery,
+      item: customer.price,
+      qty: customer.quantity,
+      total: customer.total,
+      img: h1T,
+    },
+    
+  
+    attachments: [{ filename: "logoR", path: "./attachments/logoR.png"}, {filename: "size", path: "./attachments/" + h1T + "/" + customer.variant + ".jpg" }],
+  
+  };
+  
+  transporter.sendMail(usermailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
 
+
+    const order = new Order ({
+            "product": customer.product,
+            "First name": customer.fname,
+            "Second name": customer.lname,
+            "Phone number": customer.phone,
+            "size": customer.variant,
+            "Quantity": customer.quantity,
+            "Total amount": { Delivery: customer.delivery, order: customer.price, total: customer.total}
+          
+    })
+    order.save(function(err){
+  
+      if (err){
+        res.send("error")
+   
+        res.redirect("/menu/" + title);
+
+    } else {
+
+        res.redirect("/");
+    }
+
+})
+});
 
 
 app.listen(3000, () =>  console.log("server started")

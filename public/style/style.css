@@ -94,11 +94,13 @@ h1, h2, h3, h4 {
 
 .news {
     display: flex;
+
+    /* height: 480px; */
 }
 
 
-.car1 p, .carousel-caption {
-    margin: auto 25%;
+.car1 p {
+    margin: auto 30%;
     padding: 0;
     width:auto;
     text-align: center;
@@ -115,6 +117,7 @@ h1, h2, h3, h4 {
     width: 100%;
     height: fit-content;
 }
+
 
 .topic {
     text-align: center;
@@ -197,6 +200,9 @@ border-radius: 17px;
     width: 220px;
     text-align: left;
 
+}  
+#email {
+    padding: 7px 20px;
 }
 
 /* cat */
@@ -243,8 +249,13 @@ border-radius: 17px;
 @media  (max-width: 500px ) {
      .list{
       display: block;
+      height: fit-content;
+
     }
 
+      .list .img {
+            height: inherit;
+      }
     .menu {
         background-color: #221c1c;
     }

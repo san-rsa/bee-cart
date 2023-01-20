@@ -45,57 +45,31 @@
 
 }
 
+br {
+    height: 2px;
+    color: aliceblue;
+    width: 75%;
+}
+
     </style>
 </head>
 <body>
     <h1>You Have A Brand New Order</h1>
 
-    <img class="logo" src="attachments/logoR.png" alt="logo">
-
     <h2>ORDER DETAILS</h2>
     <div class="form">
-    <img src="attachments/dd.jpg" alt="">
     <h3> {{product }} </h3>
     <h3> name: {{name}}</h3>
     <h3> phone no: {{phone}}</h3>
     <h3> email: {{email}}</h3>
-    <h3> type: {{variant}}</h3>
-    <h3> delivery fee: {{delivery}}</h3>
-    <h3> per item: {{item}}</h3>
+    <h3> size: {{variant}}</h3>
+    <h3> delivery fee: ₦{{delivery}}</h3>
+    <h3> per item: ₦{{item}}</h3>
     <h3> quantity: {{qty}} </h3>
-    <h3> total: {{total}} </h3>
+    <br>
+    <h3> total: ₦{{total}} </h3>
     </div>
 
 
-
-<script>
-    function preview() {
-    let option = document.getElementById("Lsnail").value;
-    let hd1 = document.getElementById("hd1").childNodes[0].data.slice(1,-1);
-
-    if (option == "small") {
-        var imagesrc = "../img/" + hd1 + "/small.jpg";
-        var img1 = document.querySelectorAll("img")[1];
-        img1.setAttribute("src", imagesrc);
-
-    } else if (option == "medium") {
-        var imagesrc = "../img/" + hd1 + "/medium.jpg";
-        var img1 = document.querySelectorAll("img")[1];
-        img1.setAttribute("src", imagesrc);
-
-    } else if (option == "large"){
-        var imagesrc = "../img/" + hd1 + "/large.jpg";
-        var img1 = document.querySelectorAll("img")[1];
-        img1.setAttribute("src", imagesrc);
- 
-    } else {
-        var imagesrc = "../img/" + hd1 + "/jumbo.jpg";
-        var img1 = document.querySelectorAll("img")[1];
-        img1.setAttribute("src", imagesrc);
-
-    }
-
-};
-</script>
 </body>
 </html>
